@@ -1,0 +1,70 @@
+<meta charset="UTF-8">
+
+<script>
+    let equipamentos = []; // Array vazio para armazenar os equipamentos
+
+    // Função para adicionar um equipamento ao estoque
+    function adicionarEquipamento() {
+        let nomeEquipamento = prompt("Digite o nome do equipamento:");
+        let quantidade = parseInt(prompt("Digite a quantidade a ser adicionada ao estoque:"));
+
+        let equipamento = {
+            nome: nomeEquipamento,
+            quantidade: quantidade
+        };
+
+        equipamentos.push(equipamento);
+    }
+
+    // Função para vender um equipamento do estoque
+    function venderEquipamento() {
+        let nomeEquipamento = prompt("Digite o nome do equipamento a ser vendido:");
+        let quantidade = parseInt(prompt("Digite a quantidade a ser vendida:"));
+
+        let equipamentoEncontrado = equipamentos.find(equipamento => equipamento.nome === nomeEquipamento);
+
+        if (equipamentoEncontrado) {
+            if (equipamentoEncontrado.quantidade >= quantidade) {
+                equipamentoEncontrado.quantidade -= quantidade;
+                console.log(`Venda realizada: ${quantidade} ${nomeEquipamento}(s) vendido(s).`);
+            } else {
+                console.log("Quantidade insuficiente em estoque.");
+            }
+        } else {
+            console.log("Equipamento não encontrado.");
+        }
+    }
+
+    // Função para exibir o estoque de equipamentos
+    function exibirEstoque() {
+        console.log("Estoque de Equipamentos:");
+        equipamentos.forEach(equipamento => {
+            console.log(`${equipamento.nome}: ${equipamento.quantidade}`);
+        });
+    }
+
+    // Menu principal
+    let opcao;
+    while (opcao !== "sair") {
+        opcao = prompt("Escolha uma opção: \n 1. Adicionar Equipamento \n 2. Vender Equipamento \n 3. Exibir Estoque \n sair - Para encerrar o programa");
+
+        switch (opcao) {
+            case "1":
+                adicionarEquipamento();
+                break;
+            case "2":
+                venderEquipamento();
+                break;
+            case "3":
+                exibirEstoque();
+                break;
+            case "sair":
+                console.log("Programa encerrado.");
+                break;
+            default:
+                console.log("Opção inválida. Escolha novamente.");
+                break;
+        }
+    }
+
+</script>

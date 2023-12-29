@@ -1,0 +1,83 @@
+<meta charset="UTF-8">
+
+<script>
+
+    var arrayEstoque = [];
+
+    function adicionarEquipamento() {
+        console.clear();
+
+        var nomeEquipamento = prompt("Informe o nome do equipamento:");
+        var quantidadeEquipamento = parseInt(prompt("Informe a quantidade do equipamento:"));
+
+        var equipamento = {
+            nome: nomeEquipamento,
+            quantidade: quantidadeEquipamento
+        };
+
+        arrayEstoque.push(equipamento);
+        console.log("Equipamento adicionado ao estoque.");
+    }
+
+    function venderEquipamento() {
+        console.clear();
+
+        var nomeEquipamento = prompt("Informe o nome do equipamento a ser deletado:");
+        var quantidadeEquipamento = parseInt(prompt("Informe a quantidade do equipamento a ser deletado:"));
+
+        var equipamentoEncontrado = null;
+
+        for (var i = 0; i < arrayEstoque.length; i++) {
+            if (arrayEstoque[i].nome == nomeEquipamento) {
+                equipamentoEncontrado = arrayEstoque[i];
+                break;
+            }
+        }
+
+        if (equipamentoEncontrado !== null) {
+            
+            if (equipamentoEncontrado.quantidade >= quantidadeEquipamento) {
+                equipamentoEncontrado.quantidade -= quantidadeEquipamento;
+                console.log("Equipamento vendido com sucesso!");
+            } 
+            else {
+                console.log("Quantidade insuficiente em estoque.")
+            }
+        } 
+        
+        else {
+            console.log("Equipamento não encontrado.");
+        }
+    }
+
+    function exibirEquipamento() {
+        console.clear();
+
+        console.log("Estoque:");
+        for (var i = 0; i < arrayEstoque.length; i++) {
+            console.log(arrayEstoque[i].nome, arrayEstoque[i].quantidade);
+        }
+    }
+
+    var opcaoEscolhida;
+
+    while (opcaoEscolhida !== 4) {
+        opcaoEscolhida = prompt("Menu: \n 1. Adicionar Equipamento \n 2. Vender Equipamento \n 3. Exibir Equipamento \n 4. Sair");
+
+        if (opcaoEscolhida == 1) {
+            adicionarEquipamento();
+        }
+        else if (opcaoEscolhida == 2) {
+            venderEquipamento();
+        }
+        else if (opcaoEscolhida == 3) {
+            exibirEquipamento();
+        }
+        else {
+            console.clear();
+            console.log("Programa Encerrado");
+            break;
+        }
+    }
+
+</script>

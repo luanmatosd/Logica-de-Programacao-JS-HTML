@@ -1,0 +1,73 @@
+<meta charset="UTF-8">
+
+<input />
+<button>Compare o segredo</button>
+
+<script>
+
+    function sorteiaNumeros() { //Função para sortear números aleatórios
+        return Math.round(Math.random() * 10);
+    }
+
+    function populaArray(quantidade) { //Função usada para quantificar a quantidade de vetores no Array
+
+        var segredos = []; //Array inicia vazio
+
+        var contador = 1; //Contador necessário para o laço de repetição da nossa função de popular o Array
+
+        while (contador <= quantidade) { //Laço usado para contar as repetição da quantidade escolhida de vetores
+
+            var numeroSorteado = sorteiaNumeros(); //É jogado numa váriavel o número aleatório sorteado
+
+            var achou = false;
+
+            //Uso essa repetição para varrer a lista e ver se o número aleatório gerado está lá dentro
+            for (var posicao = 0; posicao < segredos.length; posicao++) {
+
+                //Se o número aleatório estiver, eu não faço o Push
+                if (segredos[posicao] == numeroSorteado) {
+                    achou = true;
+                    break;
+                }
+            }
+            //Se o número aleatório não estiver, eu faço o Push
+            if (achou == false) {
+                segredos.push(numeroSorteado); //Popular o array com um número aleatório
+                contador++;
+            }
+        }
+        return segredos;
+    }
+
+    var segredos = populaArray(3);
+    console.log(segredos);
+
+    var input = document.querySelector("input");
+    input.focus();
+
+    function verifica() {
+
+        var achou = false;
+
+        for (var posicao = 0; posicao < segredos.length; posicao++) {
+
+            if (input.value == segredos[posicao]) {
+                alert("Você acertou!");
+                achou = true;
+                break;
+            }
+        }
+
+        if (achou == false) {
+            alert("Voce errou!");
+        }
+
+        input.value = "";
+        input.focus();
+
+    }
+
+    var button = document.querySelector("button");
+    button.onclick = verifica;
+
+</script>

@@ -1,0 +1,35 @@
+<meta charset="UTF-8">
+<script>
+
+    function pulaLinha() {
+        document.write("<br>");
+    }
+
+    function mostra(frase){
+        document.write(frase);
+        pulaLinha();
+    }
+
+    function calculaIMC(peso, altura){
+        var imc = peso / (altura * altura);
+        mostra("O IMC calculado é igual a " + imc);
+        return imc; //Return é necessário para retornar para as variáveis "calculaIMC1" e "calculaIMC2". 
+                    //Sem ele fica "Undefined"
+                    //É possível usar apenas o Return na função, sem a necessidade de usar "var".
+    }
+    
+    /*function calculaIMC2(peso, altura){
+        return peso / (altura * altura);
+    }
+
+    calculaIMC3 = calculaIMC2(80, 1.72);
+    calculaIMC4 = calculaIMC2(95, 1.72);
+    mostra(calculaIMC3);
+    mostra(calculaIMC4);*/
+    
+    calculaIMC1 = calculaIMC(80, 1.72);
+    calculaIMC2 = calculaIMC(95, 1.72);
+    var somaIMC = calculaIMC1 + calculaIMC2;
+    mostra("O total dos IMCs somados é " + somaIMC);
+
+</script>
